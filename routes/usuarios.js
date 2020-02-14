@@ -9,9 +9,9 @@ const {check} = require('express-validator');
 // api/usuarios
 router.post('/',
     [
-      check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-      check('email','Agrega un email valido').isEmail(),
-      check('password', 'El password debe ser minimo de 6 caracteres').isLength({min:6}) 
+      check('nombre', 'El campo nombre es obligatorio').not().isEmpty(),
+      check('email','Email no valido').isEmail(),
+      check('password', 'La contraseña debe ser tener un minimo de 6 caracteres').isLength({min:6}) 
     ],
     usuarioController.crearUsuario
 );

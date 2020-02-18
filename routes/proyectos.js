@@ -9,12 +9,31 @@ const { check } = require('express-validator');
 // api/proyectos
 router.post( '/' , 
     auth,
+    [
+        check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
+    ],
     proyectoController.crearProyectos 
 );
 
+//obtener todos los proyectos
 router.get('/',
     auth,
-    proyectoController.crearProyectos
-)
+    proyectoController.obtenerProyectos
+);
+
+// Actualizr los proyectos por el ID
+router.put('/:id',
+    auth,
+    [
+        check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
+    ],
+    proyectoController.actualizarProyecto
+);
+
+// Eliminar un Proyecto
+router.delete('/:id',
+    auth,
+    proyectoController.eliminarProyecto
+);
 
 module.exports = router;

@@ -7,9 +7,9 @@ const jwt = require('../node_modules/jsonwebtoken');
 exports.crearUsuario = async (req, res) => {
 
     //revisar si existen errores
-    const errors = validationResult(req);
-    if(!errors.isEmpty() ){
-        return res.status(400).json({errors: errors.array() })
+    const errores = validationResult(req);
+    if(!errores.isEmpty() ){
+        return res.status(400).json({errores: errores.array() })
     }
 
     // extrae email y password

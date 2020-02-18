@@ -5,9 +5,9 @@ const jwt = require('../node_modules/jsonwebtoken');
 
 exports.autenticarUsuario = async (req, res) => {
     //revisar si existen errores
-    const errors = validationResult(req);
-    if(!errors.isEmpty() ){
-        return res.status(400).json({errors: errors.array() })
+    const errores = validationResult(req);
+    if(!errores.isEmpty() ){
+        return res.status(400).json({errores: errores.array() })
     }
 
     // extraer el email y password
@@ -36,7 +36,7 @@ exports.autenticarUsuario = async (req, res) => {
 
         //firmar el jwt
         jwt.sign(payload, process.env.SECRETA, {
-            expiresIn: 3600
+            expiresIn: 432000 //3600 es una hora
         }, (error, token) => {
             if(error) throw error;
 

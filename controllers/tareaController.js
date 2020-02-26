@@ -91,9 +91,8 @@ exports.actualizarTarea = async (req, res) => {
 
         // crear un objeto con la nueva informacion
         const nuevaTarea = {};
-
-        if (nombre) {nuevaTarea.nombre = nombre;}
-        if (estado) {nuevaTarea.estado = estado;}
+        nuevaTarea.nombre = nombre;
+        nuevaTarea.estado = estado;
         
         // guardar la tarea
         tarea = await Tarea.findByIdAndUpdate({ _id: req.params.id },nuevaTarea , { new : true });
@@ -116,7 +115,7 @@ exports.eliminarTarea = async (req, res) => {
         }
 
         // extraer proyecto
-        const { proyecto } = req.body;
+        const { proyecto } = req.query;
         const existeProyecto = await Proyecto.findById(proyecto);
 
         // Revisar si el proyecto actual pertenece al usuario autenticado
